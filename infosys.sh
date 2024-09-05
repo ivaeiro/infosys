@@ -60,5 +60,3 @@ netstat -tulpn
 echo ""
 echo "${azul}Usuarios conectados${reset}"
 who
-echo ""
-echo "${azul}${reset}"
