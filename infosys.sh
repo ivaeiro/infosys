@@ -1,3 +1,5 @@
+#!/bin/bash
+
 azul="\e[34m"
 reset="\e[0m"
 
@@ -33,7 +35,7 @@ echo ""
 echo "${azul}Espacio en discos${reset}"
 df -h
 echo""
-echo "${azul}Detalles de los discosuand${reset}"
+echo "${azul}Detalles de los discos${reset}"
 lsblk
 echo ""
 echo "${azul}Información de la red${reset}"
@@ -60,3 +62,5 @@ netstat -tulpn
 echo ""
 echo "${azul}Usuarios conectados${reset}"
 who
+echo ""
+echo "${azul}${reset}"
