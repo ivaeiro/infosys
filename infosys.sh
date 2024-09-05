@@ -1,7 +1,16 @@
 #!/bin/bash
 
 azul="\e[34m"
+azul=""
 reset="\e[0m"
+reset=""
+
+if [[ "${TERM}" == *"color"* ]]; then
+  azul="\e[34m"
+  reset="\e[0m"
+fi
+
+export LC_ALL="C.utf8"
 
 echo " _        __                     "
 echo "(_)      / _|                    "
@@ -15,7 +24,7 @@ echo ""
 echo "       Hecho por ivaeiro"
 
 echo ""
-echo  "${azul}Sistema operativo${reset}"
+echo -e  "${azul}Sistema operativo${reset}"
 uname -a
 echo ""
 echo "${azul}Distribución de Linux${reset}"
@@ -26,41 +35,39 @@ else
 	echo "El comando lsb_release no esta disponible"
 fi
 echo ""
-echo "${azul}Versión de kernel${reset}"
+echo -e "${azul}Versión de kernel${reset}"
 uname -r
 echo ""
-echo "${azul}Tiempo de actividad del sistema${reset}"
+echo -e "${azul}Tiempo de actividad del sistema${reset}"
 uptime
 echo ""
-echo "${azul}Espacio en discos${reset}"
+echo -e "${azul}Espacio en discos${reset}"
 df -h
 echo""
-echo "${azul}Detalles de los discos${reset}"
+echo -e "${azul}Detalles de los discosuand${reset}"
 lsblk
 echo ""
-echo "${azul}Información de la red${reset}"
+echo -e "${azul}Información de la red${reset}"
 ip a
 echo ""
-echo "${azul}Conecciones de red${reset}"
+echo -e "${azul}Conecciones de red${reset}"
 ss -tuln
 echo ""
-echo "${azul}Información del CPU${reset}"
-lscpu | grep "Nombre del modelo"
-lscpu | grep "Arquitectura"
+echo -e "${azul}Informaci贸n del CPU${reset}"
+salidaLSCPU=$(lscpu | grep -iE "Architecture|Model name")
+echo "$salidaLSCPU" | cut -d ':' -f2 | sed 's/^[t ]*//g;s/[t ]*$//g' -
 echo ""
-echo "${azul}Memoria RAM${reset}"
+echo -e "${azul}Memoria RAM${reset}"
 free -h
 echo ""
-echo "${azul}Top 5 procesos por uso de CPU${reset}"
+echo -e "${azul}Top 5 procesos por uso de CPU${reset}"
 ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head -n 6
 echo ""
-echo "${azul}Top 5 procesos por uso de RAM${reset}"
+echo -e "${azul}Top 5 procesos por uso de RAM${reset}"
 ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 6
 echo ""
-echo "${azul}Puertos abiertos${reset}"
+echo -e "${azul}Puertos abiertos${reset}"
 netstat -tulpn
 echo ""
-echo "${azul}Usuarios conectados${reset}"
+echo -e "${azul}Usuarios conectados${reset}"
 who
-echo ""
-echo "${azul}${reset}"
